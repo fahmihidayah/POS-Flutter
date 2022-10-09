@@ -6,28 +6,30 @@ class CommonTextField extends StatefulWidget {
   final String label;
   final TextInputType inputType;
   final bool isPassword;
-  String? _errorMessage;
-  void Function(String value) _onChanged;
-  void Function(bool value, String text) _onFocusChanged;
+  void Function(String value)? onChanged;
+  void Function(bool value, String text)? onFocusChanged;
+  String? Function(String? value)? onValidate;
   bool _isPasswordVisible = false;
+  void Function(String?)? onSaved;
+  String? errorMessage;
+  bool? enableAutoValidate;
   TextEditingController textController = TextEditingController();
 
   CommonTextField(
-      {required this.label,
-        String text = "",
+      {super.key,
+      required this.label,
+      String text = "",
       this.inputType = TextInputType.text,
       this.isPassword = false,
-      required void Function(String value) onChange,
-      required void Function(bool value, String text)  onFocusChanged,
-      String? errorMessage = null})
-      : _onChanged = onChange,
-        _onFocusChanged = onFocusChanged,
-        _isPasswordVisible = isPassword ? true : false {
-    if(errorMessage?.isNotEmpty == true) {
-      this._errorMessage = errorMessage;
-    }
-    if(text.isNotEmpty) {
-      this.textController.text = text;
+      this.onChanged,
+      this.onFocusChanged,
+      this.onValidate,
+      this.onSaved,
+      this.errorMessage,
+      this.enableAutoValidate})
+      : _isPasswordVisible = isPassword ? true : false {
+    if (text.isNotEmpty) {
+      textController.text = text;
     }
   }
 
@@ -38,29 +40,31 @@ class CommonTextField extends StatefulWidget {
 }
 
 class CommonTextFieldState extends State<CommonTextField> {
-
   @override
   Widget build(BuildContext context) {
     return Focus(
+        key: UniqueKey(),
         onFocusChange: (hasFocus) {
-          if(hasFocus) {
-            logger().d("text value ${widget.textController.text.length}");
-            Future.delayed(Duration(milliseconds: 5), () {
-              widget.textController.selection = TextSelection.collapsed(offset: widget.textController.text.length);
+          if (widget.enableAutoValidate == true && !hasFocus) {
+            setState(() {
+              widget.errorMessage =
+                  widget.onValidate?.call(widget.textController.text);
             });
           }
-          widget._onFocusChanged(hasFocus, widget.textController.text);
+          widget.onFocusChanged?.call(hasFocus, widget.textController.text);
         },
-        child: TextField(
+        child: TextFormField(
+            key: UniqueKey(),
             controller: widget.textController,
             keyboardType: widget.inputType,
             onChanged: (text) {
-              widget._onChanged(text);
+              widget.onChanged?.call(text);
             },
+            onSaved: widget.onSaved,
+            validator: widget.onValidate,
             obscureText: widget._isPasswordVisible,
             decoration: InputDecoration(
-
-                errorText: widget._errorMessage,
+                errorText: widget.errorMessage,
                 labelText: widget.label,
                 border: const OutlineInputBorder(),
                 suffixIcon: widget.isPassword

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pos/ui/screen/registration/bloc/registration_bloc.dart';
 import 'package:pos/ui/widget/container_widget.dart';
-import 'package:pos/ui/widget/text_widget.dart';
+import 'package:pos/ui/widget/text_field_widget.dart';
 
 class RegistrationView extends StatefulWidget {
   @override
@@ -30,31 +30,41 @@ class RegistrationViewState extends State<RegistrationView> {
                   ),
                   MediumMarginContainer(
                       child: CommonTextField(
-                          label: "Name",
-                          inputType: TextInputType.name,
-                          onChange: (text) {}, onFocusChanged: (hasFocus, text) {},)),
+                    label: "Name",
+                    inputType: TextInputType.name,
+                    onChanged: (text) {},
+                    onFocusChanged: (hasFocus, text) {},
+                  )),
                   MediumMarginContainer(
                       child: CommonTextField(
-                          label: "Mobile Number",
-                          inputType: TextInputType.phone,
-                          onChange: (text) {}, onFocusChanged: (hasFocus, text) {},)),
+                    label: "Mobile Number",
+                    inputType: TextInputType.phone,
+                    onChanged: (text) {},
+                    onFocusChanged: (hasFocus, text) {},
+                  )),
                   MediumMarginContainer(
                       child: CommonTextField(
-                          label: "Email",
-                          inputType: TextInputType.emailAddress,
-                          onChange: (text) {}, onFocusChanged: (hasFocus, text) {},)),
+                    label: "Email",
+                    inputType: TextInputType.emailAddress,
+                    onChanged: (text) {},
+                    onFocusChanged: (hasFocus, text) {},
+                  )),
                   MediumMarginContainer(
                       child: CommonTextField(
-                          label: "Password",
-                          inputType: TextInputType.text,
-                          isPassword: true,
-                          onChange: (text) {}, onFocusChanged: (hasFocus, text) {},)),
+                    label: "Password",
+                    inputType: TextInputType.text,
+                    isPassword: true,
+                    onChanged: (text) {},
+                    onFocusChanged: (hasFocus, text) {},
+                  )),
                   MediumMarginContainer(
                       child: CommonTextField(
-                          label: "Password Confirmation",
-                          inputType: TextInputType.text,
-                          isPassword: true,
-                          onChange: (text) {}, onFocusChanged: (hasFocus, text) {},)),
+                    label: "Password Confirmation",
+                    inputType: TextInputType.text,
+                    isPassword: true,
+                    onChanged: (text) {},
+                    onFocusChanged: (hasFocus, text) {},
+                  )),
                   Row(children: [
                     Checkbox(
                       onChanged: (value) {

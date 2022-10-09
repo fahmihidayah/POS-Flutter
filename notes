@@ -1,0 +1,24 @@
+1. for generate json
+$HOME/Documents/flutter/bin/flutter pub run build_runner build --delete-conflicting-outputs
+
+2. usefull resource
+- sample, dependency injection, bloc, repository, flavour
+https://github.com/CoderJava/Flutter-News-App
+- sample json generation
+https://docs.flutter.dev/development/data-and-backend/json#running-the-code-generation-utility
+- sample dependency injecection
+https://pub.dev/packages/get_it
+- navigation v1
+https://docs.flutter.dev/cookbook/navigation/navigate-with-arguments
+- navigation v2
+https://medium.com/flutter/learning-flutters-new-navigation-and-routing-system-7c9068155ade
+https://github.com/dleurs/Flutter-Navigator-2.0-demo-with-Authentication-mecanism
+- formz
+https://pub.dev/packages/formz/install
+- dio
+https://pub.dev/packages/dio
+
+3. need to learn
+- GlobalKey
+- Form and FormState Widget
+- Testing

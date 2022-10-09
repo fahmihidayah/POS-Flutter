@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pos/ui/screen/splash/page/splash_page.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PosApp extends MaterialApp {
 
@@ -8,6 +9,12 @@ class PosApp extends MaterialApp {
     theme: ThemeData(
       primarySwatch: Colors.blue
     ),
-    home: SplashPage()
+    home: SplashPage(),
+    localizationsDelegates: [
+      AppLocalizations.delegate
+    ],
+    supportedLocales: [
+      Locale('en', ''),
+    ]
   );
 }

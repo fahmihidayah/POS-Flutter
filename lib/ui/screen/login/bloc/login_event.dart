@@ -1,15 +1,24 @@
 part of 'login_bloc.dart';
 
-@immutable
-abstract class LoginEvent {
+class LoginEvent {
+  String text;
 
+  LoginEvent({required this.text});
 }
 
-class LoginEventSubmit extends LoginEvent {
-  final String email;
-  final String password;
+class LoginEventEmailChanged extends LoginEvent {
 
-  LoginEventSubmit({required this.email,required this.password});
+  LoginEventEmailChanged({required super.text});
+}
+
+class LoginEventPasswordChanged extends LoginEvent {
+  LoginEventPasswordChanged({required super.text});
+}
+
+
+class LoginEventSubmit extends LoginEvent {
+
+  LoginEventSubmit() : super(text: "");
 }
 
 

@@ -16,8 +16,8 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
   }
 
   Future<void> _onInitial(SplashEventInitial event, Emitter<SplashState> emit) async {
-    final baseResponse = await commonRepository.getCommonData();
-    debugPrint("data splash screen base response ${baseResponse.message} ${baseResponse.code}");
+    // final baseResponse = await commonRepository.getCommonData();
+    // debugPrint("data splash screen base response ${baseResponse.message} ${baseResponse.code}");
     return Future.delayed(const Duration(seconds: 1), () {
       emit(SplashStateFinish());
     });

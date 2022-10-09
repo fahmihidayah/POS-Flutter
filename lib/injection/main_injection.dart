@@ -28,7 +28,8 @@ void mainInitial() {
       BaseOptions(
         connectTimeout: 5000,
         receiveTimeout: 5000,
-        baseUrl: "http://192.168.100.147:8001/"
+        baseUrl: "http://192.168.1.6:8001/"
+        // baseUrl: "http://192.168.100.147:8001/"
       )
     );
     dio.interceptors.add(DefaultLoggingInterceptor());
